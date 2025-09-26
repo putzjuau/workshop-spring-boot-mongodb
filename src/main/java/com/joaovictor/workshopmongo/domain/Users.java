@@ -1,24 +1,28 @@
 package com.joaovictor.workshopmongo.domain;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
 @Setter
-public class User implements Serializable {
+@Document
+public class Users implements Serializable {
     private static final long serialVersionUid = 1L;
+    @Id
     private String id;
     private String name;
     private String email;
 
 
-    public User() {
+    public Users() {
 
     }
 
-    public User(String name, String id, String email) {
+    public Users(String name, String id, String email) {
         this.name = name;
         this.id = id;
         this.email = email;
@@ -26,7 +30,7 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof User user)) return false;
+        if (!(o instanceof Users user)) return false;
         return Objects.equals(getId(), user.getId());
     }
 
