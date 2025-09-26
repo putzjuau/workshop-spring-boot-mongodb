@@ -11,9 +11,7 @@ import java.util.Objects;
 @Setter
 @Document
 public class Users implements Serializable {
-    private static final long serialVersionUid = 1L;
     @Id
-
     private String id;
     private String name;
     private String email;
