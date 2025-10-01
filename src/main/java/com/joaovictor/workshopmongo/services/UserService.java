@@ -37,9 +37,18 @@ public class UserService {
 
     }
 
+    public Users update(Users obj) {
+        Users newObj = repo.findById(obj.getId()).orElseThrow(()-> new ObjectNotFoundException("Usuario não encontrado rapaz!")); // usuario trazido diretamente do bd para atualizacao
+        updateData(newObj, obj);
+        return repo.save(newObj);
+    }
+
     public Users FromDTO(UserDTO objDto) {
         return new Users(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 
-
+    public void updateData(Users newObj, Users obj) {
+        newObj.setName(obj.getName());
+        newObj.setEmail(obj.getEmail());
+    }
 }
