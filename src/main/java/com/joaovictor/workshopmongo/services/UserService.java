@@ -18,17 +18,28 @@ public class UserService {
     public List<Users> findAll() {
         return repo.findAll();
     }
-    public Users findById(String id){
-       Optional<Users> user = repo.findById(id);
-       if(user.isEmpty()){
-           throw  new ObjectNotFoundException("Objeto não encontrado ");
-       }
-       return user.orElse(null);
+
+    public Users findById(String id) {
+        Optional<Users> user = repo.findById(id);
+        if (user.isEmpty()) {
+            throw new ObjectNotFoundException("Objeto não encontrado ");
+        }
+        return user.orElse(null);
     }
-    public Users Insert(Users obj){
+
+    public Users Insert(Users obj) {
         return repo.insert(obj);
     }
-    public Users FromDTO(UserDTO objDto){
+
+    public void Delete(String id) {
+        findById(id);
+        repo.deleteById(id);
+
+    }
+
+    public Users FromDTO(UserDTO objDto) {
         return new Users(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
+
+
 }

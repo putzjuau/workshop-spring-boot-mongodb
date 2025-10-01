@@ -11,8 +11,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/users")
 public class UserResource {
@@ -39,5 +37,9 @@ public class UserResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+      service.Delete(id);
+        return ResponseEntity.noContent().build(); // como não tem que conter nada, chamamos o nocontent
+    }
 }
