@@ -27,11 +27,11 @@ public class UserService {
         return user.orElse(null);
     }
 
-    public Users Insert(Users obj) {
+    public Users insert(Users obj) {
         return repo.insert(obj);
     }
 
-    public void Delete(String id) {
+    public void delete(String id) {
         findById(id);
         repo.deleteById(id);
 
@@ -43,7 +43,7 @@ public class UserService {
         return repo.save(newObj);
     }
 
-    public Users FromDTO(UserDTO objDto) {
+    public Users fromDTO(UserDTO objDto) {
         return new Users(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 
