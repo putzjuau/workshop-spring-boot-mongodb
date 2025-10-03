@@ -1,6 +1,7 @@
 package com.joaovictor.workshopmongo.services;
 
 import com.joaovictor.workshopmongo.domain.Post;
+import com.joaovictor.workshopmongo.dto.PostDto;
 import com.joaovictor.workshopmongo.exception.ObjectNotFoundException;
 import com.joaovictor.workshopmongo.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,28 +26,32 @@ public class PostService {
         }
     }
 
-    public Post Insert(Post obj) {
+    public Post insert(Post obj) {
         return repo.insert(obj);
     }
 
-    public void Delete(String id) {
+    public void delete(String id) {
         findById(id);
         repo.deleteById(id);
 
     }
 
-//    public Post update(Post obj) {
-//        Post newObj = repo.findById(obj.getId()).orElseThrow(()-> new ObjectNotFoundException("Usuario não encontrado rapaz!")); // usuario trazido diretamente do bd para atualizacao
-//        updateData(newObj, obj);
-//        return repo.save(newObj);
-//    }
+    public Post update(Post obj) {
+        Post newObj = repo.findById(obj.getId()).orElseThrow(() -> new ObjectNotFoundException("Usuario não encontrado rapaz!")); // usuario trazido diretamente do bd para atualizacao
+        updateData(newObj, obj);
+        return repo.save(newObj);
+    }
 
-//    public Post FromDTO(Post objDto) {
-//        return new Post(objDto.getId(), SimpleDateFormat.paobjDto.getTitle(), objDto.getDate(), objDto.getBody());
-//    }
+    public Post fromDTO(PostDto objDto) {
+        return new Post(objDto.getId(), objDto.getDate(), objDto.getTitle(), objDto.getBody(), objDto.getAuthor());
+    }
 
-//    public void updateData(Post newObj, Post obj) {
-//        newObj.setName(obj.getName());
-//        newObj.setEmail(obj.getEmail());
-//    }
+    public void updateData(Post newObj, Post obj) {
+        newObj.setDate(obj.getDate());
+        newObj.setTitle(obj.getTitle());
+        newObj.setBody(obj.getBody());
+        newObj.setAuthor(obj.getAuthor());
+        newObj.setTitle(obj.getTitle());
+
+    }
 }
