@@ -52,7 +52,7 @@ public class PostResource {
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
     }
-    @RequestMapping(value = "z", method = RequestMethod.GET)
+    @RequestMapping(value = "titlesearch", method = RequestMethod.GET)
     public ResponseEntity<List<Post>> findByIdTitle(@RequestParam(value="text", defaultValue = "") String text) { //cita que o valor vai vir dentro do parametro texto
     text = URL.decodeParams(text); // decodifica o nome
     List<Post> list = service.findByTitle(text); // procura

@@ -58,6 +58,6 @@ public class PostService {
     }
 
     public List<Post> findByTitle(String title) {
-     return    repo.findByTitleContaining(title);
+     return  repo.searchTitle(title);
     }
 }
