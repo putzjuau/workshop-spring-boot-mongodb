@@ -17,15 +17,9 @@ public class CommentDto  {
     private AuthorDto author;
     private Post post;
 
-    public CommentDto(String id, String text, Date date, AuthorDto author, Post post) {
-        this.id = id;
-        this.text = text;
-        this.date = date;
-        this.author = author;
-        this.post = post;
+
+    public CommentDto() {
     }
-
-
 
     public CommentDto(String id, String text, Date date, AuthorDto author) {
         this.id = id;

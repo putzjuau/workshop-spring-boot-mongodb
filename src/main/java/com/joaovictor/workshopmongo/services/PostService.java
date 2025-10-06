@@ -21,7 +21,7 @@ public class PostService {
     }
 
     public Post findById(String id) {
-     Optional<Post> post = repo.findById(id);
+        Optional<Post> post = repo.findById(id);
         if (post.isEmpty()) {
             throw new ObjectNotFoundException("Objeto não encontrado ");
         }
@@ -57,4 +57,7 @@ public class PostService {
 
     }
 
+    public List<Post> findByTitle(String title) {
+     return    repo.findByTitleContaining(title);
+    }
 }

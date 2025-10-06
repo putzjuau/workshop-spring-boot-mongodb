@@ -4,6 +4,7 @@ import com.joaovictor.workshopmongo.domain.Post;
 import com.joaovictor.workshopmongo.domain.Users;
 import com.joaovictor.workshopmongo.dto.PostDto;
 import com.joaovictor.workshopmongo.dto.UserDTO;
+import com.joaovictor.workshopmongo.resources.util.URL;
 import com.joaovictor.workshopmongo.services.PostService;
 import com.joaovictor.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = {"/posts", "/posts/"})
+@RequestMapping("/posts")
 public class PostResource {
     @Autowired
     private PostService service;
@@ -51,6 +52,16 @@ public class PostResource {
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
     }
+    @RequestMapping(value = "z", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findByIdTitle(@RequestParam(value="text", defaultValue = "") String text) { //cita que o valor vai vir dentro do parametro texto
+    text = URL.decodeParams(text); // decodifica o nome
+    List<Post> list = service.findByTitle(text); // procura
+
+
+
+        return ResponseEntity.ok().body(list); // acionamos o corpo sendo a lista
+    }
+
 
 
 }
