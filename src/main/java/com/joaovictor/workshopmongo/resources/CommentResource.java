@@ -1,10 +1,7 @@
 package com.joaovictor.workshopmongo.resources;
 
 import com.joaovictor.workshopmongo.domain.Comment;
-import com.joaovictor.workshopmongo.domain.Post;
 import com.joaovictor.workshopmongo.dto.CommentDto;
-import com.joaovictor.workshopmongo.dto.PostDto;
-import com.joaovictor.workshopmongo.repository.CommentRepository;
 import com.joaovictor.workshopmongo.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

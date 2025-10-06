@@ -2,28 +2,39 @@ package com.joaovictor.workshopmongo.dto;
 
 import com.joaovictor.workshopmongo.domain.Comment;
 import com.joaovictor.workshopmongo.domain.Post;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 
 import java.io.Serializable;
 import java.util.Date;
-@Getter
-@Setter
-public class CommentDto implements Serializable {
-    private static final long serialVersionUIDLONG = 1L;
+@Data
+
+public class CommentDto  {
     private String id;
     private String text;
     private Date date;
+    private AuthorDto author;
     private Post post;
 
-    public CommentDto() {
+    public CommentDto(String id, String text, Date date, AuthorDto author, Post post) {
+        this.id = id;
+        this.text = text;
+        this.date = date;
+        this.author = author;
+        this.post = post;
     }
 
-    public CommentDto(Comment obj) {
-        id = obj.getId();
-        text = obj.getText();
-        date = obj.getDate();
-        post = obj.getPost();
+
+
+    public CommentDto(String id, String text, Date date, AuthorDto author) {
+        this.id = id;
+        this.text = text;
+        this.date = date;
+        this.author = author;
+    }
+
+    public CommentDto(Comment comment) {
+
     }
 }

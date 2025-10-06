@@ -1,9 +1,7 @@
 package com.joaovictor.workshopmongo.services;
 
 import com.joaovictor.workshopmongo.domain.Comment;
-import com.joaovictor.workshopmongo.domain.Post;
 import com.joaovictor.workshopmongo.dto.CommentDto;
-import com.joaovictor.workshopmongo.dto.PostDto;
 import com.joaovictor.workshopmongo.exception.ObjectNotFoundException;
 import com.joaovictor.workshopmongo.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -18,4 +18,5 @@ public class Comment implements Serializable {
     private String text;
     private Date date;
     private Post post;
+
 }

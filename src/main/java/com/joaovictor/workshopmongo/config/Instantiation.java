@@ -4,6 +4,7 @@ import com.joaovictor.workshopmongo.domain.Comment;
 import com.joaovictor.workshopmongo.domain.Post;
 import com.joaovictor.workshopmongo.domain.Users;
 import com.joaovictor.workshopmongo.dto.AuthorDto;
+import com.joaovictor.workshopmongo.dto.CommentDto;
 import com.joaovictor.workshopmongo.repository.CommentRepository;
 import com.joaovictor.workshopmongo.repository.PostRepository;
 import com.joaovictor.workshopmongo.repository.UserRepository;
@@ -22,14 +23,11 @@ public class Instantiation implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private PostRepository postRepository;
-    @Autowired
-    private CommentRepository commentRepository;
 
     @Override
     public void run(String... args) throws Exception {
         userRepository.deleteAll();
         postRepository.deleteAll();
-        commentRepository.deleteAll();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -51,9 +49,14 @@ public class Instantiation implements CommandLineRunner {
 
 
 
-        Comment comment = new Comment(null, "Tenha um ótimo dia", sdf.parse("21/03/2018"), post2);
-        Comment comment2 = new Comment(null, "Boa viagem man", sdf.parse("21/03/2018"), post);
-        Comment comment3 = new Comment(null, "Aproveite", sdf.parse("21/03/2018"), post);
-        commentRepository.saveAll((Arrays.asList(comment, comment2, comment3)));
+        CommentDto comment = new CommentDto(null, "Boa viagem Mano!", sdf.parse("21/03/20218"), new AuthorDto(alex));
+        CommentDto comment2 = new CommentDto(null, "Aproveite!", sdf.parse("21/03/20218"), new AuthorDto(bob));
+        CommentDto comment3 = new CommentDto(null, "Tenha um ótimo dia!!", sdf.parse("21/03/20218"), new AuthorDto(alex));
+
+
+        post.getComments().addAll(Arrays.asList(comment,comment2));
+        post2.getComments().addAll(Arrays.asList(comment3));
+
+        postRepository.saveAll((Arrays.asList(post, post2)));
     }
 }

@@ -56,4 +56,5 @@ public class PostService {
         newObj.setTitle(obj.getTitle());
 
     }
+
 }
