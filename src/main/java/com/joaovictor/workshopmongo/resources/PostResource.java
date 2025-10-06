@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping(path = {"/posts", "/posts/"})
 public class PostResource {
     @Autowired
     private PostService service;
@@ -33,7 +34,11 @@ public class PostResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findById(@PathVariable String id) {
+        Post obj = service.findById(id);
+        return ResponseEntity.ok().body(Collections.singletonList(obj)); // como não tem que conter nada, chamamos o nocontent
+    }
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable String id) {
         service.delete(id);

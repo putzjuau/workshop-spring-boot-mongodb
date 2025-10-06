@@ -1,6 +1,7 @@
 package com.joaovictor.workshopmongo.services;
 
 import com.joaovictor.workshopmongo.domain.Post;
+import com.joaovictor.workshopmongo.domain.Users;
 import com.joaovictor.workshopmongo.dto.PostDto;
 import com.joaovictor.workshopmongo.exception.ObjectNotFoundException;
 import com.joaovictor.workshopmongo.repository.PostRepository;
@@ -19,11 +20,12 @@ public class PostService {
         return repo.findAll();
     }
 
-    public void findById(String id) {
-        Optional<Post> post = repo.findById(id);
+    public Post findById(String id) {
+     Optional<Post> post = repo.findById(id);
         if (post.isEmpty()) {
             throw new ObjectNotFoundException("Objeto não encontrado ");
         }
+        return post.orElse(null);
     }
 
     public Post insert(Post obj) {
